@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="listaPeriodos">
+        <item>@string/primeiroPeriodo</item>
+        <item>@string/segundoPeriodo</item>
+        <item>@string/terceiroPeriodo</item>
+        <item>@string/quartoPeriodo</item>
+        <item>@string/quintoPeriodo</item>
+        <item>@string/sextoPeriodo</item>
+    </array>
+</resources>

@@ -1,0 +1,8 @@
+Alterações - 28/03/2016
+
+-> Strings parametrizadas (arquivo strings.xml) inseridas no projeto
+-> Substituído o método de adição dos períodos no adapter (a inserção era feita uma-a-uma para os seis períodos) 
+por um FOR com um ARRAY (arquivo arrays.xml) referenciando as strings do mesmo conforme o índice.
+
+OBS: Não foi possível alterar as strings brutas da classe que realiza a conexão com o WebService pois a mesma não é uma Activity e não recebe um Context.
+Apenas activities e classes com context podem acessar recursos (Resources).

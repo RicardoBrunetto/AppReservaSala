@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+<resources>
+    <string name="app_name">Reserva de Sala UEM</string>
+    <string name="msg_ok">OK</string>
+
+    <!-->Gerais</!-->
+    <string name="rejeitado">Rejeitado</string>
+    <string name="cancelado">Cancelado</string>
+    <string name="finalizado">Finalizado</string>
+    <string name="pendente">Pendente</string>
+    <string name="confirmado">Confirmado</string>
+    <string name="erro">Erro</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="processing">Processando...</string>
+    <string name="buscandoUser">Buscando Usuario</string>
+    <string name="notFoundUser">Usuário não encontrado</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="requestFailed">Erro na solicitação</string>
+    <string name="notAllowed">Sem permissão para esta tarefa!</string>
+    <string name="taskBDFail">Falha ao realizar tarefa no Banco de Dados</string>
+    <string name="salaStr">Sala</string>
+    <string name="sala">Sala: </string>
+    <string name="descricao">Descrição: </string>
+    <string name="livreStr">Livre</string>
+    <string name="nomeStr">Nome: </string>
+    <string name="mailStr">E-mail: </string>
+    <string name="telefoneStr">Telefone: </string>
+    <string name="notAllowedRequestOn">Voce não tem permissão para reservar no </string>
+    <string name="reserva">Reserva</string>
+
+    <!-->Níveis de Usuário</!-->
+    <string name="docente">Docente</string>
+    <string name="secretario">Secretário</string>
+    <string name="admDepto">Adm. de Departamento</string>
+    <string name="admSistema">Adm. de Sistema</string>
+
+    <!-->Períodos</!-->
+    <string name="primeiroPeriodo">(07:45-09:25)</string>
+    <string name="segundoPeriodo">(09:40-12:00)</string>
+    <string name="terceiroPeriodo">(13:30-15:10)</string>
+    <string name="quartoPeriodo">(15:30-18:00)</string>
+    <string name="quintoPeriodo">(19:30-21:10)</string>
+    <string name="sextoPeriodo">(21:20-23:00)</string>
+
+    <!-->Dias da Semana</!-->
+    <string name="domingo">Domingo</string>
+    <string name="segunda_feira">Segunda</string>
+    <string name="terca_feira">Terça</string>
+    <string name="quarta_feira">Quarta</string>
+    <string name="quinta_feira">Quinta</string>
+    <string name="sexta_feira">Sexta</string>
+    <string name="sabado">Sábado</string>
+
+    <!-->Tipos de Sala</!-->
+    <string name="laboratorio">Laboratório</string>
+    <string name="projecao">Sala de Projeção</string>
+
+    <!-->Modalidades</!-->
+    <string name="praticaStr">Prática</string>
+    <string name="teoricaStr">Teórica</string>
+    <string name="mestradoStr">Mestrado</string>
+    <string name="especializacaoStr">Especialização</string>
+    <string name="defesaStr">Defesa</string>
+    <string name="minicursoStr">Minicurso</string>
+    <string name="eventualStr">Eventual</string>
+    <string name="fixoStr">Fixo</string>
+
+    <!-->AlterarUsuarioActivity</!-->
+    <string name="naoValidoNome">Digite um nome válido</string>
+    <string name="naoValidoEmail">Digite um e-mail valido</string>
+    <string name="naoValidoTelefone">Digite um telefone valido</string>
+    <string name="emailInUse">E-mail utilizado por outro usuário</string>
+
+    <!-->RecuperarSenhaActivity</!-->
+    <string name="sucessMailSent">E-mail enviado com sucesso</string>
+    <string name="failRecuperarUser">Erro ao recuperar usuário</string>
+
+    <!-->SalasDisponiveisPorDiaActivity</!-->
+    <string name="dataNaoSelect">Data não selecionada</string>
+
+    <!-->SolicitarReservaActivity</!-->
+    <string name="selecionarData">Selecione uma data</string>
+    <string name="selecionarDisc">Selecione uma disciplina</string>
+    <string name="selecionarPeriodo">Selecione um período</string>
+    <string name="sucessRequestReserva">Reserva solicitada com sucesso!</string>
+    <string name="periodoInUse">Esse período ja esta reservado, favor selecionar outro</string>
+
+    <!-->CadastrarSalaActivity</!-->
+    <string name="inserirNumeroSala">Insira um número de sala</string>
+    <string name="numeroSalaInUse">Já existe uma sala no departamento com esse numero</string>
+
+    <!-->MenuPrincipalActivity</!-->
+    <string name="reservasStr">Reservas</string>
+    <string name="solicitarReserva">Solicitar Reserva</string>
+    <string name="salasLivres">Salas Livres</string>
+    <string name="salasReservadas">Salas Reservadas</string>
+    <string name="meusDados">Meus Dados</string>
+    <string name="usuariosStr">Usuarios</string>
+    <string name="cadastrarUsuario">Cadastrar Usuario</string>
+    <string name="listarUsuario">Listar Usuario</string>
+    <string name="alterarUsuario">Alterar Usuario</string>
+    <string name="vincularDisc">Vincular Disciplina</string>
+    <string name="aoUser">Ao Usuário</string>
+    <string name="salasStr">Salas</string>
+    <string name="cadastrarSalas">Cadastrar Salas</string>
+    <string name="listarSalas">Listar Salas</string>
+    <string name="alterarSala">Alterar Sala</string>
+    <string name="disciplinasStr">Disciplinas</string>
+    <string name="cadastrarDisc">Cadastrar Disciplina</string>
+    <string name="alterarDisc">Alterar Disciplina</string>
+    <string name="listarDisc">Listar Disciplina</string>
+    <string name="desvincularDisc">Desvincular Disciplina</string>
+    <string name="leftleft">&lt;&lt; </string>
+    <string name="rightright"> &gt;&gt;</string>
+
+    <!-->LoginActivity</!-->
+    <string name="emptyEmail">Campo email não preenchido</string>
+    <string name="emptySenha">Campo senha não preenchido</string>
+
+    <!-->AlterarSenhaActivity</!-->
+    <string name="digiteEmail">Digite um e-mail</string>
+    <string name="digiteSenhaAtual">Digite a senha</string>
+    <string name="digiteSenhaNova">Digite a nova senha</string>
+    <string name="senhaNaoConfere">As senhas digitadas não são iguais!</string>
+    <string name="notPossiblePassChange">Não foi possível aterar a senha</string>
+    <string name="sucessPassChange">Senha alterada com sucesso</string>
+
+    <!-->Operações em Geral</!-->
+    <string name="salaRemovidaSucesso">Sala removida com sucesso!</string>
+    <string name="userRemovidoSucesso">Usuário removido com sucesso!</string>
+    <string name="salaCadastroSucesso">Sala cadastrada com sucesso!</string>
+    <string name="userCadastroSucesso">Usuário cadastrado com sucesso!</string>
+    <string name="userAlteradoSucesso">Usuário alterado com sucesso!</string>
+
+    <!-->AcessoAppUemWS - C0NEXÃO COM O SERVIDOR / NÃO ALTERAR</!-->
+    <!-->NÃO SERÁ POSSÍVEL UTILIZAR</!-->
+    <string name="usuario">usuario</string>
+    <string name="id">id</string>
+    <string name="nome">nome</string>
+    <string name="email">email</string>
+    <string name="senha">senha</string>
+    <string name="telefone">telefone</string>
+    <string name="id_departamento">id_departamento</string>
+    <string name="id_disciplinas">id_disciplinas</string>
+    <string name="id_curso">id_curso</string>
+    <string name="permissao">permissao</string>
+    <string name="problema_locomocao">problema_locomocao</string>
+    <string name="login">login</string>
+    <string name="privilegio">privilegio</string>
+    <string name="urn">urn</string>
+    <string name="codigo">codigo</string>
+    <string name="periodo">periodo</string>
+    <string name="turma">turma</string>
+    <string name="classificacao">classificacao</string>
+    <string name="iddepartamento">iddepartamento</string>
+    <string name="idusuario">idusuario</string>
+    <string name="tipoaula">tipoaula</string>
+    <string name="iddisciplina">iddisciplina</string>
+    <string name="dataefetuacao">dataefetuacao</string>
+    <string name="proximoid">proximoid</string>
+    <string name="tiposala">tiposala</string>
+    <string name="idsala">idsala</string>
+    <string name="observacao">observacao</string>
+    <string name="idprimeiro">idprimeiro</string>
+    <string name="data">data</string>
+    <string name="classificacaosala">classificacaosala</string>
+    <string name="id_cursos_prioritarios">id_cursos_prioritarios</string>
+
+    <!-->File Name's - NÃO ALTERAR</!-->
+    <string name="arq1">arq1.ldk</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_teste">Teste</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
