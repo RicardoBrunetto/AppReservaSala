@@ -21,49 +21,54 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Login" />
+            android:label="Login"></activity>
         <activity
             android:name=".RecuperarSenhaActivity"
-            android:label="Recuperar Senha" />
+            android:label="Recuperar Senha"></activity>
         <activity
             android:name=".AlterarSenhaActivity"
-            android:label="Alterar Senha" />
+            android:label="Alterar Senha"></activity>
         <activity
             android:name=".SalasDisponiveisPorDiaActivity"
-            android:label="Salas Disponiveis" />
+            android:label="Salas Disponiveis"></activity>
         <activity
             android:name=".SalasReservadasActivity"
-            android:label="Salas Reservadas" />
+            android:label="Salas Reservadas"></activity>
         <activity
             android:name=".MenuPrincipalActivity"
-            android:label="Menu Principal" />
+            android:label="Menu Principal"></activity>
         <activity
             android:name=".SolicitarReservaActivity"
-            android:label="Solicitacao de Reserva" />
+            android:label="Solicitacao de Reserva"></activity>
         <activity
             android:name=".CadastrarUsuarioActivity"
-            android:label="Cadastrar Usuario" />
+            android:label="Cadastrar Usuario"></activity>
         <activity
             android:name=".ListarUsuarioActivity"
-            android:label="Lista de Usuarios" />
+            android:label="Lista de Usuarios"></activity>
         <activity
             android:name=".MinhasReservasActivity"
-            android:label="Minhas Reservas" />
+            android:label="Minhas Reservas"></activity>
         <activity
             android:name=".ListaAlterarUsuarioActivity"
-            android:label="Editar Usuario" />
+            android:label="Editar Usuario"></activity>
         <activity
             android:name=".AlterarUsuarioActivity"
-            android:label="Alterar Dados" />
+            android:label="Alterar Dados"></activity>
         <activity
             android:name=".ListarSalaActivity"
-            android:label="Salas" />
+            android:label="Salas"></activity>
         <activity
             android:name=".CadastrarSalaActivity"
-            android:label="Cadastrar Sala" />
+            android:label="Cadastrar Sala"></activity>
         <activity
             android:name=".ListaAlterarSalaActivity"
-            android:label="Editar Sala" />
+            android:label="Editar Sala"></activity>
+
+        <activity
+            android:name=".VerificaServidorActivity"
+            android:label="Status Servidor"></activity>
+
     </application>
 
 </manifest>

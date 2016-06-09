@@ -168,17 +168,11 @@
     <string name="classificacaosala">classificacaosala</string>
     <string name="id_cursos_prioritarios">id_cursos_prioritarios</string>
 
+    <!-->Verificar Conectividade com o servidor<!-->
+    <string name="statusOK">Servidor funcionando normalmente</string>
+    <string name="statusOFF">Servidor fora do ar</string>
+
     <!-->File Name's - NÃO ALTERAR</!-->
     <string name="arq1">arq1.ldk</string>
-    <string name="title_activity_main_menu">MainMenu</string>
-    <string name="title_activity_teste">Teste</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

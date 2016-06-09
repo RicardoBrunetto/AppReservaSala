@@ -2,9 +2,12 @@ package com.app.reserva.reservadesalauem;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import org.ksoap2.SoapEnvelope;
+import org.ksoap2.SoapFault;
+import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -52,6 +55,7 @@ public class AcessoAppUemWS {
 
     private static final String CARREGARCURSO = "carregarCurso";
 
+    private static final String VERIFICASISTEMA = "verificaSistema";
     ///
     //// As funções que tem tem nessa classe tem nome igual às funções que tem no Web Service e com os mesmos parametros
     /// thows Exception é para tratamento de excessao
@@ -62,6 +66,29 @@ public class AcessoAppUemWS {
     // 1 - é a parte onde envia o login e um dado, para alteração ou cadastro de dado, ver função alterar senha para saber
     // seu funcionamento
     // 2 - são requisições que solicitam algum dado, por exemplo, carregarDepartamento, ver essa função
+
+    public int verificaSistema() throws Exception{
+        SoapObject soapVerificaSistema = new SoapObject(NAMESPACE, VERIFICASISTEMA);
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.setOutputSoapObject(soapVerificaSistema);
+        envelope.implicitTypes = true;
+        HttpTransportSE httpTrans = new HttpTransportSE(URL);
+        try{
+            Log.e("aki1","");
+            // envia o envelope com o soap object
+            httpTrans.call("urn" + VERIFICASISTEMA, envelope);
+            // recebe resposta simples
+            SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
+            // converte para inteiro e reorna
+            Log.e("aki","");
+            return Integer.valueOf(resposta.toString());
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
 
     // função para confirmar login, ela retorna o privilégio, se encontrar, senão, retorna -1
     public int confirmarLogin(Login login) throws Exception{
@@ -383,7 +410,7 @@ public class AcessoAppUemWS {
         }
     }
 
-    public ArrayList<Usuario> carregarUsuario() throws Exception{
+    public ArrayList<Usuario> carregarUsuario() throws Exception, SoapFault{
         ArrayList<Usuario> listaUsuario;
         listaUsuario = new ArrayList<>();
 
@@ -396,8 +423,8 @@ public class AcessoAppUemWS {
             httpTrans.call("urn" + CARREGARUSUARIO, envelope);
             try{
                 SoapObject item = (SoapObject) envelope.getResponse();
-                Usuario user = new Usuario();
 
+                Usuario user = new Usuario();
                 user.setId(Integer.parseInt(item.getProperty("id").toString()));
                 user.setId_departamento(Integer.parseInt(item.getProperty("id_departamento").toString()));
                 user.setNome(item.getProperty("nome").toString());
@@ -424,7 +451,6 @@ public class AcessoAppUemWS {
                         user.setTelefone(item.getProperty("telefone").toString());
                         user.setPermissao(Integer.parseInt(item.getProperty("permissao").toString()));
                         user.setId_disciplinas(item.getProperty("id_disciplinas").toString());
-                        //System.out.println(item.getProperty("id_disciplinas").toString());
                         user.setProblema_locomocao(Integer.parseInt(item.getProperty("problema_locomocao").toString()));
                         user.setStatus(Integer.parseInt(item.getProperty("status").toString()));
 

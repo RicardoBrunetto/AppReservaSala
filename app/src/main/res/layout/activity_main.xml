@@ -34,6 +34,7 @@
             android:id="@+id/btnMainEntrar"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -50,9 +51,17 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Alterar Senha"
+                android:id="@+id/btnMainAlterarSenha"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Esqueceu Senha?"
                 android:id="@+id/btnMainEsqueceuSenha"
-                android:layout_centerVertical="true"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
@@ -64,10 +73,11 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alterar Senha"
-                android:id="@+id/btnMainAlterarSenha"
+                android:text="Status Sistema"
+                android:id="@+id/btnVerificaSistema"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

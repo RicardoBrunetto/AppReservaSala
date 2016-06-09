@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.app.reserva.reservadesalauem.app.MessageBox;
 import com.app.reserva.reservadesalauem.dados.Login;
 
 import java.io.BufferedReader;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnMainEsqueceuSenha;
     private Button btnMainAlterarSenha;
     private Login login;
+    private Button btnVerificaSistema;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnMainAlterarSenha = (Button) findViewById(R.id.btnMainAlterarSenha);
         btnMainAlterarSenha.setOnClickListener(this);
+
+        btnVerificaSistema = (Button) findViewById(R.id.btnVerificaSistema);
+        btnVerificaSistema.setOnClickListener(this);
 
         String FILENAME = getString(R.string.arq1); // arquivo onde será salvo o login (email) e a senha
         try{
@@ -126,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(v == btnMainAlterarSenha){  // vai na tela se alterar senha
             Intent it = new Intent(this,AlterarSenhaActivity.class);
+            startActivity(it);
+        }
+        if(v == btnVerificaSistema){
+            Intent it = new Intent(this,VerificaServidorActivity.class);
             startActivity(it);
         }
     }

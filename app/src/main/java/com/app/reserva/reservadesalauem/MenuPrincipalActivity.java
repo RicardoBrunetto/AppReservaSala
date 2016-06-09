@@ -1,23 +1,13 @@
 package com.app.reserva.reservadesalauem;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.reserva.reservadesalauem.dados.Login;
@@ -26,7 +16,6 @@ import com.app.reserva.reservadesalauem.util.CarregarDadoUtils;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MenuPrincipalActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -61,24 +50,10 @@ public class MenuPrincipalActivity extends AppCompatActivity implements View.OnC
     private Button btnMenuPrincipalOp9;
 
 
-    //New Design
-    GridView gridMenuMain;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setContentView(R.layout.activity_menu_principal);
 
         user = new Login(); // cria um novo login
 
@@ -128,19 +103,7 @@ public class MenuPrincipalActivity extends AppCompatActivity implements View.OnC
 
         btnMenuPrincipalOp9 = (Button) findViewById(R.id.btnMenuPrincipalOp9);
         btnMenuPrincipalOp9.setOnClickListener(this);
-
-        ArrayList<ItemMain> itens = new ArrayList<>();
-
-        itens.add(new ItemMain("Pesquisar Salas", R.drawable.shape_circle));
-        itens.add(new ItemMain("Salas Livres", R.drawable.shape_circle));
-        itens.add(new ItemMain("Minhas Reservas", R.drawable.shape_circle));
-        itens.add(new ItemMain("Funcionalidade X", R.drawable.shape_circle));
-
-        gridMenuMain = (GridView) findViewById(R.id.gridMenuMain);
-        ItemMainAdapter adapter = new ItemMainAdapter(this, itens);
-        gridMenuMain.setAdapter(adapter);
-
-        //this.carregarTela(); // carregar os dados da tela atual
+        this.carregarTela(); // carregar os dados da tela atual
     }
 
     private void carregarTela(){
@@ -540,86 +503,6 @@ public class MenuPrincipalActivity extends AppCompatActivity implements View.OnC
         }
         if(id_tela==3){ // disciplinas, não implementado, pode ser alterado para o que for necessário
 
-        }
-    }
-
-    private class ItemMain{
-        String description;
-        int imagem;
-
-        public ItemMain(String description, int imagem) {
-            this.description = description;
-            this.imagem = imagem;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public int getImagem() {
-            return imagem;
-        }
-
-        public void setImagem(int imagem) {
-            this.imagem = imagem;
-        }
-    }
-
-    protected class ItemMainAdapter extends BaseAdapter {
-        Context ctx;
-        List<ItemMain> itens;
-
-        public ItemMainAdapter(Context ctx, List<ItemMain> itens) {
-            this.ctx = ctx;
-            this.itens = itens;
-        }
-
-        @Override
-        public int getCount() {
-            return itens.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return itens.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ItemMain itemAtual = itens.get(position);
-
-            ViewHolder holder = null;
-            if (convertView == null) {
-                Log.d("LogDesign", "Criando Item");
-                convertView = LayoutInflater.from(ctx).inflate(R.layout.item_principal, null);
-                holder = new ViewHolder();
-                holder.txtDesc   = (TextView) convertView.findViewById(R.id.txtDesc);
-                holder.imgBtn = (ImageView) convertView.findViewById(R.id.imgBtn);
-                convertView.setTag(holder);
-            } else {
-                Log.d("LogDesign", "Reciclando item");
-                holder = (ViewHolder)convertView.getTag();
-            }
-
-            Log.d("LogDesign", "Preenchendo info");
-            holder.txtDesc.setText(itemAtual.getDescription());
-            holder.imgBtn.setImageResource(itemAtual.getImagem());
-
-            return convertView;
-        }
-
-        protected class ViewHolder{
-            TextView txtDesc;
-            ImageView imgBtn;
         }
     }
 }

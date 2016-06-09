@@ -74,9 +74,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Thread t = new Thread(this); // criar nova thread para poder chamar funcionalidade relacionado à Web Service
             t.start(); // inicializar thread
 
-            try {
+            try{
                 t.join(); // esperar thread terminar de executar
-
                 if(login.getPrivilegio() != -1){ // se o usuário existir
                     if(cbxLoginLembrar.isChecked()){ // verifica se ele selecionou lembrar os dados ou não
                         this.salvarDados(); // salvar os dados no arquivo
