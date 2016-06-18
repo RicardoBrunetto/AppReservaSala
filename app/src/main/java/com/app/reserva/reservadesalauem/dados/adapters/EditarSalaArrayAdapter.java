@@ -11,14 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.reserva.reservadesalauem.AcessoAppUemWS;
-import com.app.reserva.reservadesalauem.CadastrarSalaActivity;
-import com.app.reserva.reservadesalauem.ListaAlterarSalaActivity;
-import com.app.reserva.reservadesalauem.MenuPrincipalActivity;
+import com.app.reserva.reservadesalauem.activities.MenuPrincipalActivity;
 import com.app.reserva.reservadesalauem.R;
 import com.app.reserva.reservadesalauem.app.MessageBox;
 import com.app.reserva.reservadesalauem.dados.Login;
 import com.app.reserva.reservadesalauem.dados.Sala;
-import com.app.reserva.reservadesalauem.dados.Usuario;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -116,8 +113,8 @@ public class EditarSalaArrayAdapter extends ArrayAdapter<Sala> implements View.O
                             MessageBox.show(context, "", context.getString(R.string.salaRemovidaSucesso));
 
                             // aqui converte o context para a classe que tem esse array adapter e chama a
-                            // função que atualiza a lista
-                            ((ListaAlterarSalaActivity)context).listarSala();
+                            //TODO: função que atualiza a lista
+                            //((ListaAlterarSalaActivity)context).listarSala();
                             return;
                         }
                         if (resposta == -1) {
@@ -144,15 +141,15 @@ public class EditarSalaArrayAdapter extends ArrayAdapter<Sala> implements View.O
                 //System.out.println("Alterar : " + lstUsuario.get(Integer.parseInt("" + v.getTag())).getNome());
 
                 // passagem de parametro para a classe cadastrar sala (usado também para alterar)
-                Intent it = new Intent(context, CadastrarSalaActivity.class);
+            //TODO:    Intent it = new Intent(context, CadastrarSalaActivity.class);
                 // parametro que diz que é de alterar, não cadastrar
-                it.putExtra(MenuPrincipalActivity.PREENCHERSOLICITACAO,1);
-                it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) login);
+                //it.putExtra(MenuPrincipalActivity.PREENCHERSOLICITACAO,1);
+                //it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) login);
                 // pega sala que está na mesma linha do botão selecionado
-                it.putExtra(MenuPrincipalActivity.SALA, (Serializable) lstSala.get(Integer.parseInt("" + v.getTag())));
+                //it.putExtra(MenuPrincipalActivity.SALA, (Serializable) lstSala.get(Integer.parseInt("" + v.getTag())));
                 // iniciar a activity como se a classe que tem o array adapter tivesse chamado, aí usa for result, que espera um
                 // resultado da classe criada. Se fizer isso, tem que colocar onActivityResult na classe que tem o ArrayAdapter.
-                ((Activity) context).startActivityForResult(it, 3);
+                //((Activity) context).startActivityForResult(it, 3);
             }
         });
 

@@ -9,12 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.app.reserva.reservadesalauem.MainActivity;
-import com.app.reserva.reservadesalauem.MenuPrincipalActivity;
+import com.app.reserva.reservadesalauem.activities.MenuPrincipalActivity;
 import com.app.reserva.reservadesalauem.R;
-import com.app.reserva.reservadesalauem.SolicitarReservaActivity;
 import com.app.reserva.reservadesalauem.dados.Login;
-import com.app.reserva.reservadesalauem.dados.Reserva;
 import com.app.reserva.reservadesalauem.dados.SalasDisponiveis;
 import com.app.reserva.reservadesalauem.dados.Usuario;
 import com.app.reserva.reservadesalauem.util.CarregarDadoUtils;
@@ -157,15 +154,16 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
         it.putExtra(MenuPrincipalActivity.PRIVILEGIO,login.getPrivilegio());
         context.startActivity(it);
         */
-        Intent it = new Intent(context, SolicitarReservaActivity.class);
+
+        //TODO: Intent it = new Intent(context, SolicitarReservaActivity.class);
         // mandar preencher os dados
-        it.putExtra(MenuPrincipalActivity.PREENCHERSOLICITACAO,1);
+        //it.putExtra(MenuPrincipalActivity.PREENCHERSOLICITACAO,1);
         // enviar login
-        it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) lstSalas.get(Integer.parseInt(""+v.getTag())).getLogin());
+        //it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) lstSalas.get(Integer.parseInt(""+v.getTag())).getLogin());
         // enviar daos de preenchimento
-        it.putExtra(MenuPrincipalActivity.SALASDISPONIVEIS, (Serializable) lstSalas.get(Integer.parseInt("" + v.getTag())));
+        //it.putExtra(MenuPrincipalActivity.SALASDISPONIVEIS, (Serializable) lstSalas.get(Integer.parseInt("" + v.getTag())));
         // iniciar activity
-        context.startActivity(it);
+        //context.startActivity(it);
     }
 
     // variaveis para linkar com as da interface

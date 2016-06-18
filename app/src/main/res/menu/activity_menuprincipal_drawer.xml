@@ -3,21 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_salasDisponiveis"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Salas Disponíveis" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_minhasReservas"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Minhas Reservas" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_alterarSenha"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Alterar Senha" />
     </group>
 
     <item android:title="Communicate">

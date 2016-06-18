@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.reserva.reservadesalauem.AcessoAppUemWS;
-import com.app.reserva.reservadesalauem.AlterarUsuarioActivity;
-import com.app.reserva.reservadesalauem.ListaAlterarUsuarioActivity;
-import com.app.reserva.reservadesalauem.MenuPrincipalActivity;
+import com.app.reserva.reservadesalauem.activities.MenuPrincipalActivity;
 import com.app.reserva.reservadesalauem.R;
 import com.app.reserva.reservadesalauem.app.MessageBox;
 import com.app.reserva.reservadesalauem.dados.Login;
@@ -128,8 +126,8 @@ public class EditarUsuarioArrayAdapter extends ArrayAdapter<Usuario> implements 
                         t.join();
                         if(resposta == 1){
                             MessageBox.show(context,"",context.getString(R.string.userRemovidoSucesso));
-                            // se foi removido com sucesso, chamar função da classe que tem o array adapter para atualizar a lista
-                            ((ListaAlterarUsuarioActivity)context).listarUsuario();
+                            //TODO: se foi removido com sucesso, chamar função da classe que tem o array adapter para atualizar a lista
+                          //  ((ListaAlterarUsuarioActivity)context).listarUsuario();
                             return;
                         }
                         if(resposta== -1){
@@ -156,14 +154,14 @@ public class EditarUsuarioArrayAdapter extends ArrayAdapter<Usuario> implements 
             public void onClick(View v) {
 
                 //System.out.println("Alterar : " + lstUsuario.get(Integer.parseInt("" + v.getTag())).getNome());
-                Intent it = new Intent(context, AlterarUsuarioActivity.class);
-                it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) login);
+                //TODO: Intent it = new Intent(context, AlterarUsuarioActivity.class);
+          //      it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) login);
                 // passar o usuario usando a tag para saber posicao na lista (linha que tem esse botão)
-                it.putExtra(MenuPrincipalActivity.USUARIO, (Serializable) lstUsuario.get(Integer.parseInt("" + v.getTag())));
+          //      it.putExtra(MenuPrincipalActivity.USUARIO, (Serializable) lstUsuario.get(Integer.parseInt("" + v.getTag())));
                 // chamar a classe que irá alterar, solicitando uma resposta. Quando usa esse context, é como se quem estiver
                 // chamando a classe não é o adapter, mas sim a classe que tem o adapter, portanto a resposta irá para a classe
                 // que tem o adapter
-                ((Activity)context).startActivityForResult(it, 0);
+          //      ((Activity)context).startActivityForResult(it, 0);
             }
         });
 
