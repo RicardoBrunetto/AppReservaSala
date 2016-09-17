@@ -45,25 +45,17 @@ public class SalaArrayAdapter extends ArrayAdapter<Sala> implements View.OnClick
 
             view = inflater.inflate(resource, parent, false);
 
-            viewHolder.txtItemSalaSeparador = (TextView) view.findViewById(R.id.txtItemSalaSeparador);
             viewHolder.txtItemSalaNumero = (TextView) view.findViewById(R.id.txtItemSalaNumero);
             viewHolder.txtItemSalaClassificacao = (TextView) view.findViewById(R.id.txtItemSalaClassificacao);
             viewHolder.btnItemSalaInfo = (Button) view.findViewById(R.id.btnItemSalaInfo);
 
             view.setTag(viewHolder);
-
-            convertView = view;
-        } else {
-
+        }else{
             viewHolder = (ViewHolder) convertView.getTag();
-
             view = convertView;
         }
 
         Sala sala = getItem(position);
-
-        // separador para que o adapter ocupe a tela horizontal inteira
-        viewHolder.txtItemSalaSeparador.setWidth(R.dimen.activity_horizontal_margin);
 
         // ecento de click no botão info
         viewHolder.btnItemSalaInfo.setOnClickListener(this);
@@ -96,7 +88,6 @@ public class SalaArrayAdapter extends ArrayAdapter<Sala> implements View.OnClick
 
     // variaveis para linkar com a interface
     static class ViewHolder {
-        TextView txtItemSalaSeparador;
         TextView txtItemSalaNumero;
         TextView txtItemSalaClassificacao;
         Button btnItemSalaInfo;

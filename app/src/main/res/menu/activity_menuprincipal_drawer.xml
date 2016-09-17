@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_salasDisponiveis"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Salas Disponíveis" />
-        <item
-            android:id="@+id/nav_minhasReservas"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Minhas Reservas" />
-        <item
-            android:id="@+id/nav_alterarSenha"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Alterar Senha" />
+                <item
+                    android:id="@+id/nav_salasDisponiveis"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Salas Disponíveis" />
+                <item
+                    android:id="@+id/nav_minhasReservas"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Minhas Reservas" />
+                <item
+                    android:id="@+id/nav_solicitarReserva"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Solicitar Reserva" />
+                <item
+                    android:id="@+id/nav_salasReservadas"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Salas Reservadas" />
+
+                <item
+                    android:id="@+id/nav_cadastrarSala"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Cadastrar Sala" />
+                <item
+                    android:id="@+id/nav_cadastrarUsuario"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Cadastrar Usuário" />
+
+                <item
+                    android:id="@+id/nav_alterarSenha"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Alterar Senha" />
+                <item
+                    android:id="@+id/nav_sair"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Sair" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
-
 </menu>

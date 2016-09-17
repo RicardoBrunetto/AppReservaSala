@@ -1,9 +1,12 @@
 package com.app.reserva.reservadesalauem.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +21,7 @@ import com.app.reserva.reservadesalauem.R;
 import com.app.reserva.reservadesalauem.dados.Login;
 import com.app.reserva.reservadesalauem.dados.Usuario;
 import com.app.reserva.reservadesalauem.fragments.MinhasReservasFragment;
+import com.app.reserva.reservadesalauem.fragments.SalasDisponiveisPorDiaFragment;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,13 +43,13 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
     //Fragments
     MinhasReservasFragment minhasReservasFragment;
+    SalasDisponiveisPorDiaFragment salasDisponiveisPorDiaFragment;
 
 
 
     private Login user;
     private int id_tela = 0; // qual tela está: 0=reserva, 1=Usuarios, 2=salas/departamento/ disciplina
     private int id_ultima_tela = 3; // o id da ultima tela
-    private Usuario usuario; // dado do usuario
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,20 +130,36 @@ public class MenuPrincipalActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_minhasReservas && !navigationView.getMenu().findItem(R.id.nav_minhasReservas).isChecked()){ //Caso o usuário tenha selecionado e o fragment já nao esteja aberto
-            minhasReservasFragment = new MinhasReservasFragment();    //Cria um novo
-            fragmentManager.beginTransaction().replace(R.id.content_frame, minhasReservasFragment).commit();    //Troca o conteúdo pelo selecionado
+        if (id == R.id.nav_minhasReservas && !navigationView.getMenu().findItem(R.id.nav_minhasReservas).isChecked()) {
+            if (minhasReservasFragment == null){
+                minhasReservasFragment = new MinhasReservasFragment();
+                Bundle args = new Bundle();
+                args.putString(MenuPrincipalActivity.EMAIL, user.getEmail());
+                args.putString(MenuPrincipalActivity.SENHA, user.getSenha());
+                args.putInt(MenuPrincipalActivity.PRIVILEGIO, user.getPrivilegio());
+                minhasReservasFragment.setArguments(args);
+            }
+            fragmentManager.beginTransaction().replace(R.id.content_frame, minhasReservasFragment).commit();
+        } else if (id == R.id.nav_salasDisponiveis && !navigationView.getMenu().findItem(R.id.nav_salasDisponiveis).isChecked()) {
+            if (salasDisponiveisPorDiaFragment == null){
+                salasDisponiveisPorDiaFragment = new SalasDisponiveisPorDiaFragment();
+                Bundle args = new Bundle();
+                args.putString(MenuPrincipalActivity.EMAIL, user.getEmail());
+                args.putString(MenuPrincipalActivity.SENHA, user.getSenha());
+                args.putInt(MenuPrincipalActivity.PRIVILEGIO, user.getPrivilegio());
+                salasDisponiveisPorDiaFragment.setArguments(args);
+            }
+            fragmentManager.beginTransaction().replace(R.id.content_frame, salasDisponiveisPorDiaFragment).commit();
         }
-
-        //TODO: ADICIONAR UM NAV_ITEM PARA CADA FUNCIONALIDADE E VERIFICAR PRIVILÉGIOS
-        //TODO: TERMINAR DE IMPLEMENTAR O MENUPRINCIPAL
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
+        //TODO: ADICIONAR UM NAV_ITEM PARA CADA FUNCIONALIDADE E VERIFICAR PRIVILÉGIOS
+        //TODO: TERMINAR DE IMPLEMENTAR O MENUPRINCIPAL
     }
 
     /**Procedimento que instancia as views já declaradas*/
@@ -151,7 +171,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
     /** Esta função seta o layout da activity para o
      * layout princípal, que no caso é o Minhas Reservas **/
     private void mostrarFragmentPrincipal() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, new MinhasReservasFragment()).commit();
         navigationView.getMenu().findItem(R.id.nav_minhasReservas).setChecked(true);
     }

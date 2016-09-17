@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.reserva.reservadesalauem.R;
@@ -12,7 +13,6 @@ import com.app.reserva.reservadesalauem.dados.Reserva;
 import com.app.reserva.reservadesalauem.dados.Usuario;
 import com.app.reserva.reservadesalauem.util.CarregarDadoUtils;
 
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,12 +47,10 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
             view = inflater.inflate(resource, parent, false);
 
             viewHolder.txtItemMinhasReservasData = (TextView) view.findViewById(R.id.txtItemMinhasReservasData);
-            viewHolder.txtItemMinhasReservasPeriodo = (TextView) view.findViewById(R.id.txtItemMinhasReservasPeriodo);
-            viewHolder.txtItemMinhasReservasSemana = (TextView) view.findViewById(R.id.txtItemMinhasReservasSemana);
-            viewHolder.txtItemMinhasReservasSeparador = (TextView) view.findViewById(R.id.txtItemMinhasReservasSeparador);
-            viewHolder.txtItemMinhasReservasSala = (TextView) view.findViewById(R.id.txtItemMinhasReservasSala);
+            viewHolder.txtItemMinhasReservasSala = (TextView) view.findViewById(R.id.txtItemSalaNumero);
             viewHolder.txtItemMinhasReservasTipo = (TextView) view.findViewById(R.id.txtItemMinhasReservasTipo);
             viewHolder.txtItemMinhasReservasStatus = (TextView) view.findViewById(R.id.txtItemMinhasReservasStatus);
+            viewHolder.img_sts = (ImageView) view.findViewById(R.id.img_sts);
             view.setTag(viewHolder);
 
             convertView = view;
@@ -66,20 +64,23 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
         // pegar item de cada linha
         Reserva reserva = getItem(position);
         // setar os textos
-        viewHolder.txtItemMinhasReservasData.setText(reserva.getDatareserva());
-        viewHolder.txtItemMinhasReservasPeriodo.setText(getPeriodo(reserva.getPeriodo()));
-        viewHolder.txtItemMinhasReservasSemana.setText(getSemana(reserva.getDatareserva()));
+        viewHolder.txtItemMinhasReservasData.setText(getSemana(reserva.getDatareserva()) + ", " + reserva.getDatareserva() + " às " + getPeriodo(reserva.getPeriodo()));
         // escrever numero da sala só se tiver numero
         if(reserva.getIdsala() != -1){
-            viewHolder.txtItemMinhasReservasSala.setText(context.getString(R.string.sala) +reserva.getIdsala());
-        }
-        else{
-            viewHolder.txtItemMinhasReservasSala.setText(context.getString(R.string.sala));
+            viewHolder.txtItemMinhasReservasSala.setText(reserva.getIdsala());
         }
         viewHolder.txtItemMinhasReservasTipo.setText(getTipoSala(reserva.getTiposala()));
-        viewHolder.txtItemMinhasReservasStatus.setText(getStatus(reserva.getStatus()));
-        // separador usado para o adapter ocupar toda a linha
-        viewHolder.txtItemMinhasReservasSeparador.setWidth(R.dimen.activity_horizontal_margin);
+        int status = reserva.getStatus();
+        viewHolder.txtItemMinhasReservasStatus.setText(getStatus(status));
+        if(status < 0){
+            viewHolder.img_sts.setBackgroundColor(view.getResources().getColor(R.color.vermelho));
+        }else if(status == 1){
+            viewHolder.img_sts.setBackgroundColor(view.getResources().getColor(R.color.amarelo));
+        }else if(status == 2){
+            viewHolder.img_sts.setBackgroundColor(view.getResources().getColor(R.color.verde));
+        }else{
+            viewHolder.img_sts.setBackgroundColor(view.getResources().getColor(R.color.colorGray));
+        }
 
         return view;
     }
@@ -128,7 +129,7 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
     private String getSemana(String data){
         try {
             // usado para converter String para date, definindo em que formato ele está
-            DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+            DateFormat df = new SimpleDateFormat ("dd/MMM");
             df.setLenient (false);
             java.util.Date date = null;
             // conversão string -> java.util.date
@@ -189,11 +190,9 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
     // variaveis existentes na interface, para linkar depois
     static class ViewHolder {
         TextView txtItemMinhasReservasData;
-        TextView txtItemMinhasReservasPeriodo;
-        TextView txtItemMinhasReservasSemana;
         TextView txtItemMinhasReservasSala;
         TextView txtItemMinhasReservasTipo;
         TextView txtItemMinhasReservasStatus;
-        TextView txtItemMinhasReservasSeparador;
+        ImageView img_sts;
     }
 }

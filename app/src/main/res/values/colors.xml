@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="azulPadrao">#3F51B5</color>
+    <color name="azulEscuro">#283593</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorLightGray">#D3D3D3</color>
     <color name="white">#ffffff</color>
-    <color name="colorRed">#FF0000</color>
-    <color name="colorLimeGreen">#32CD32</color>
+    <color name="vermelho">#d32f2f</color>
+    <color name="vermelhoEscuro">#b71c1c</color>
+    <color name="verde">#4caf50</color>
+    <color name="verdeEscuro">#388e3c</color>
     <color name="colorBlue">#0000FF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#808080</color>
-    <color name="colorYellow">#FFFF00</color>
+    <color name="amarelo">#ffeb3b</color>
+
 
 </resources>

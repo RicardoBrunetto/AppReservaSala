@@ -62,10 +62,10 @@ public class PeriodoArrayAdapter extends ArrayAdapter<String>{
             label.setBackgroundColor(context.getResources().getColor(R.color.colorGray));
         }
         if (lstPeriodo.get(position).getStatus() == 2) { // válido
-            label.setBackgroundColor(context.getResources().getColor(R.color.colorLimeGreen));
+            label.setBackgroundColor(context.getResources().getColor(R.color.verde));
         }
         if (lstPeriodo.get(position).getStatus() == 3) { // pendente
-            label.setBackgroundColor(context.getResources().getColor(R.color.colorYellow));
+            label.setBackgroundColor(context.getResources().getColor(R.color.amarelo));
         }
         return row;
     }

@@ -37,12 +37,12 @@
     <string name="admSistema">Adm. de Sistema</string>
 
     <!-->Períodos</!-->
-    <string name="primeiroPeriodo">(07:45-09:25)</string>
-    <string name="segundoPeriodo">(09:40-12:00)</string>
-    <string name="terceiroPeriodo">(13:30-15:10)</string>
-    <string name="quartoPeriodo">(15:30-18:00)</string>
-    <string name="quintoPeriodo">(19:30-21:10)</string>
-    <string name="sextoPeriodo">(21:20-23:00)</string>
+    <string name="primeiroPeriodo">(07:45)</string>
+    <string name="segundoPeriodo">(09:40)</string>
+    <string name="terceiroPeriodo">(13:30)</string>
+    <string name="quartoPeriodo">(15:30)</string>
+    <string name="quintoPeriodo">(19:30)</string>
+    <string name="sextoPeriodo">(21:20)</string>
 
     <!-->Dias da Semana</!-->
     <string name="domingo">Domingo</string>

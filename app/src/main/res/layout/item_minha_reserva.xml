@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+        android:elevation="5dp"
+    card_view:cardCornerRadius="4dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/img_sts"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/shape_circle"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Sábado, 17/Set. às 13:30"
+                android:id="@+id/txtItemMinhasReservasData"
+                android:textColor="@color/azulPadrao"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignTop="@+id/img_sts"
+                android:layout_toRightOf="@+id/img_sts"
+                android:layout_toEndOf="@+id/img_sts"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Confirmado"
+                android:id="@+id/txtItemMinhasReservasStatus"
+                android:textColor="@color/azulPadrao"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/img_sts"
+                android:layout_toEndOf="@+id/img_sts"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="101"
+                android:id="@+id/txtItemSalaNumero"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Sala de Projeção"
+                android:id="@+id/txtItemMinhasReservasTipo"
+                android:textColor="@color/azulPadrao"
+                android:layout_alignBottom="@+id/img_sts"
+                android:layout_toRightOf="@+id/img_sts"
+                android:layout_toEndOf="@+id/img_sts"
+                android:layout_marginLeft="5dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:id="@+id/btn_cancelarReserva"
+                android:background="@drawable/btn_selector_vermelho"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@+id/txtItemMinhasReservasStatus" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
