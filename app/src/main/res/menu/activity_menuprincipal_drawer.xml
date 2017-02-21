@@ -17,11 +17,18 @@
                     android:id="@+id/nav_salasReservadas"
                     android:icon="@drawable/ic_menu_camera"
                     android:title="Salas Reservadas" />
-
+                <item
+                    android:id="@+id/nav_listaAlterarSala"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Alterar Sala" />
                 <item
                     android:id="@+id/nav_cadastrarSala"
                     android:icon="@drawable/ic_menu_camera"
                     android:title="Cadastrar Sala" />
+                <item
+                    android:id="@+id/nav_listaAlterarUsuario"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Alterar Usuário" />
                 <item
                     android:id="@+id/nav_cadastrarUsuario"
                     android:icon="@drawable/ic_menu_camera"

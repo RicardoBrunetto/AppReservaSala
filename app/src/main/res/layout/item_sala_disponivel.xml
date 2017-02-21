@@ -28,7 +28,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#000000">
+            android:background="@color/white">
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,7 +37,8 @@
                 android:text="Periodo"
                 android:id="@+id/txtItemSalaDisponivelPeriodo"
                 android:layout_weight="1"
-                android:textColor="#ffffff" />
+                android:textColor="@color/azulPadrao"
+                android:gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -47,14 +48,19 @@
                 android:text="Salas Livres"
                 android:id="@+id/txtItemSalaDisponivelQuantidade"
                 android:layout_weight="1"
-                android:textColor="#ffffff" />
+                android:textColor="@color/azulPadrao"
+                android:gravity="center_horizontal" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Reservar"
                 android:id="@+id/btnItemSalaDisponivelReservar"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/btn_selector_verde"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_margin="2dp" />
         </LinearLayout>
 
         <LinearLayout

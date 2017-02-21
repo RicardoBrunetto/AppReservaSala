@@ -20,8 +20,14 @@ import android.view.MenuItem;
 import com.app.reserva.reservadesalauem.R;
 import com.app.reserva.reservadesalauem.dados.Login;
 import com.app.reserva.reservadesalauem.dados.Usuario;
+import com.app.reserva.reservadesalauem.fragments.CadastrarUsuarioFragment;
+import com.app.reserva.reservadesalauem.fragments.ListaAlterarSalaFragment;
+import com.app.reserva.reservadesalauem.fragments.ListaAlterarUsuarioFragment;
+import com.app.reserva.reservadesalauem.fragments.ListarSalaFragment;
 import com.app.reserva.reservadesalauem.fragments.MinhasReservasFragment;
 import com.app.reserva.reservadesalauem.fragments.SalasDisponiveisPorDiaFragment;
+import com.app.reserva.reservadesalauem.fragments.SalasReservadasFragment;
+import com.app.reserva.reservadesalauem.fragments.SolicitarReservaFragment;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,8 +50,12 @@ public class MenuPrincipalActivity extends AppCompatActivity
     //Fragments
     MinhasReservasFragment minhasReservasFragment;
     SalasDisponiveisPorDiaFragment salasDisponiveisPorDiaFragment;
-
-
+    SolicitarReservaFragment solicitarReservaFragment;
+    ListarSalaFragment listarSalaFragment;
+    SalasReservadasFragment salasReservadasFragment;
+    ListaAlterarSalaFragment listaAlterarSalaFragment;
+    CadastrarUsuarioFragment cadastrarUsuarioFragment;
+    ListaAlterarUsuarioFragment listaAlterarUsuarioFragment;
 
     private Login user;
     private int id_tela = 0; // qual tela está: 0=reserva, 1=Usuarios, 2=salas/departamento/ disciplina
@@ -152,9 +162,56 @@ public class MenuPrincipalActivity extends AppCompatActivity
                 salasDisponiveisPorDiaFragment.setArguments(args);
             }
             fragmentManager.beginTransaction().replace(R.id.content_frame, salasDisponiveisPorDiaFragment).commit();
+        } else if (id == R.id.nav_solicitarReserva && !navigationView.getMenu().findItem(R.id.nav_solicitarReserva).isChecked()) {
+            if (solicitarReservaFragment == null) {
+                solicitarReservaFragment = new SolicitarReservaFragment();
+                Bundle args = new Bundle();
+                args.putString(MenuPrincipalActivity.EMAIL, user.getEmail());
+                args.putString(MenuPrincipalActivity.SENHA, user.getSenha());
+                args.putInt(MenuPrincipalActivity.PRIVILEGIO, user.getPrivilegio());
+                solicitarReservaFragment.setArguments(args);
+            }
+            fragmentManager.beginTransaction().replace(R.id.content_frame, solicitarReservaFragment).commit();
+        }else if (id == R.id.nav_cadastrarSala  && !navigationView.getMenu().findItem(R.id.nav_cadastrarSala).isChecked()) {
+            if (listarSalaFragment == null) {
+                listarSalaFragment = new ListarSalaFragment();
+                Bundle args = new Bundle();
+                Log.d("LOG1", user.getEmail());
+                args.putString(MenuPrincipalActivity.EMAIL, user.getEmail());
+                listarSalaFragment.setArguments(args);
+            }
+            fragmentManager.beginTransaction().replace(R.id.content_frame, listarSalaFragment).commit();
+        }else if(id == R.id.nav_salasReservadas && !navigationView.getMenu().findItem(R.id.nav_salasReservadas).isChecked()){
+            if (salasReservadasFragment == null)
+                salasReservadasFragment = new SalasReservadasFragment();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, salasReservadasFragment).commit();
+        }else if (id == R.id.nav_listaAlterarSala  && !navigationView.getMenu().findItem(R.id.nav_cadastrarSala).isChecked()) {
+            if (listaAlterarSalaFragment == null) {
+                listaAlterarSalaFragment = new ListaAlterarSalaFragment();
+                Bundle args = new Bundle();
+                args.putSerializable(MenuPrincipalActivity.LOGIN, user);
+                listaAlterarSalaFragment.setArguments(args);
+            }
+            fragmentManager.beginTransaction().replace(R.id.content_frame, listaAlterarSalaFragment).commit();
+        }else if (id == R.id.nav_cadastrarUsuario  && !navigationView.getMenu().findItem(R.id.nav_cadastrarUsuario).isChecked()) {
+            cadastrarUsuarioFragment = new CadastrarUsuarioFragment();
+            Bundle args = new Bundle();
+            args.putString(MenuPrincipalActivity.EMAIL, user.getEmail());
+            args.putString(MenuPrincipalActivity.SENHA, user.getSenha());
+            args.putInt(MenuPrincipalActivity.PRIVILEGIO, user.getPrivilegio());
+            cadastrarUsuarioFragment.setArguments(args);
+            fragmentManager.beginTransaction().replace(R.id.content_frame, cadastrarUsuarioFragment).commit();
+        }else if (id == R.id.nav_listaAlterarUsuario  && !navigationView.getMenu().findItem(R.id.nav_listaAlterarUsuario).isChecked()) {
+            listaAlterarUsuarioFragment = new ListaAlterarUsuarioFragment();
+            Bundle args = new Bundle();
+            args.putString(MenuPrincipalActivity.EMAIL, user.getEmail());
+            args.putString(MenuPrincipalActivity.SENHA, user.getSenha());
+            args.putInt(MenuPrincipalActivity.PRIVILEGIO, user.getPrivilegio());
+            listaAlterarUsuarioFragment.setArguments(args);
+            fragmentManager.beginTransaction().replace(R.id.content_frame, listaAlterarUsuarioFragment).commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
 

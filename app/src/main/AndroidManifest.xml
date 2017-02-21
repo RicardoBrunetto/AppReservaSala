@@ -23,7 +23,14 @@
         <activity
             android:name=".activities.MenuPrincipalActivity"
             android:label="@string/title_activity_menu_principal"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.CadastrarSalaActivity"
+            android:label="@string/title_activity_cadastrar_sala"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.AlterarUsuarioActivity" />
+        <activity android:name=".activities.RecuperarSenhaActivity" />
+        <activity android:name=".activities.AlterarSenhaActivity"></activity>
     </application>
 
 </manifest>

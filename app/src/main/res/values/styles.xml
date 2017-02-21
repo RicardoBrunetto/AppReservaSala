@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item-->
-        <item name = "windowActionBarOverlay">false</item>
+        <item name="windowActionBarOverlay">false</item>
     </style>
 
     <style name="button_text">
@@ -23,7 +23,7 @@
         <item name="android:shadowRadius">2</item>
     </style>
 
-    <style name= "appBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="appBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColor">#ffffff</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:windowActionBarOverlay">false</item>
@@ -31,11 +31,11 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name = "windowActionBarOverlay">false</item>
+        <item name="windowActionBarOverlay">false</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-        <item name = "windowActionBarOverlay">false</item>
+        <item name="windowActionBarOverlay">false</item>
     </style>
 
 </resources>

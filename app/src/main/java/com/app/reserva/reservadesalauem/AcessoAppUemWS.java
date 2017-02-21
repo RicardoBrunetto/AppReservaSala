@@ -15,7 +15,10 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import com.app.reserva.reservadesalauem.dados.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -24,7 +27,7 @@ import java.util.Vector;
 public class AcessoAppUemWS {
 
     // para conexão com web service, precisa do URL dele
-    private static final String URL = "http://din.uem.br/appsmoveis/services/AcessoAppUemWS?wsdl";
+    private static final String URL = "http://10.30.8.8:8080/AppUemWS/services/AcessoAppUemWS?wsdl";
     // namespace do web service
     private static final String NAMESPACE="http://acesso.uemWS.appreserva.com.br";
 
@@ -118,6 +121,7 @@ public class AcessoAppUemWS {
             // recebe resposta simples
             SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
             // converte para inteiro e reorna
+            Log.d("WS", "Privilegio: " + Integer.parseInt(resposta.toString()));
             return Integer.parseInt(resposta.toString());
         }
         catch (Exception ex){
@@ -793,6 +797,10 @@ public class AcessoAppUemWS {
 
     // receber todos os departamentos do servidor
     public String solicitarDataAtual() throws Exception{
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+        /*
         // criar lista vazia de departamento
         String dataAtual = "";
         // cria objeto soap
@@ -820,6 +828,7 @@ public class AcessoAppUemWS {
             ex.printStackTrace();
         }
         return dataAtual;
+        */
     }
 
     public ArrayList<Curso> carregarCurso() throws Exception{

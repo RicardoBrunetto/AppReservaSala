@@ -285,7 +285,6 @@ public class SalasDisponiveisPorDiaFragment extends Fragment implements View.OnC
         return usado;
     }
 
-
     @Override
     public void onClick(View v) {
         if(edtSalasDisponiveisPorDiaDia.getText().toString().length()==0){

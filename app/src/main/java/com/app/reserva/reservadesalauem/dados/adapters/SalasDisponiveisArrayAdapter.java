@@ -2,6 +2,7 @@ package com.app.reserva.reservadesalauem.dados.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.app.reserva.reservadesalauem.R;
 import com.app.reserva.reservadesalauem.dados.Login;
 import com.app.reserva.reservadesalauem.dados.SalasDisponiveis;
 import com.app.reserva.reservadesalauem.dados.Usuario;
+import com.app.reserva.reservadesalauem.fragments.SolicitarReservaFragment;
 import com.app.reserva.reservadesalauem.util.CarregarDadoUtils;
 
 import java.io.Serializable;
@@ -142,28 +144,32 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
     @Override
     public void onClick(View v) {
 
-        /*
+
         for(SalasDisponiveis s1:lstSalas){
             System.out.println(s1.getPeriodo()+"-"+s1.getSalaslivres());
         }
         System.out.println("Periodo atual : "+lstSalas.get(Integer.parseInt(""+v.getTag())).getPeriodo());
 
-        Intent it = new Intent(context, SolicitarReservaActivity.class);
-        it.putExtra(MenuPrincipalActivity.EMAIL,login.getEmail());
-        it.putExtra(MenuPrincipalActivity.SENHA,login.getSenha());
-        it.putExtra(MenuPrincipalActivity.PRIVILEGIO,login.getPrivilegio());
+        Intent it = new Intent(context, SolicitarReservaFragment.class);
+        SolicitarReservaFragment solicitarReservaFragment = new SolicitarReservaFragment();
+        Bundle args = new Bundle();
+
+        args.putString(MenuPrincipalActivity.EMAIL,login.getEmail());
+        args.putString(MenuPrincipalActivity.SENHA,login.getSenha());
+        args.putInt(MenuPrincipalActivity.PRIVILEGIO,login.getPrivilegio());
+        solicitarReservaFragment.setArguments(args);
         context.startActivity(it);
-        */
+
 
         //TODO: Intent it = new Intent(context, SolicitarReservaActivity.class);
         // mandar preencher os dados
-        //it.putExtra(MenuPrincipalActivity.PREENCHERSOLICITACAO,1);
+        args.putInt(MenuPrincipalActivity.PREENCHERSOLICITACAO,1);
         // enviar login
-        //it.putExtra(MenuPrincipalActivity.LOGIN, (Serializable) lstSalas.get(Integer.parseInt(""+v.getTag())).getLogin());
+        args.putSerializable(MenuPrincipalActivity.LOGIN, (Serializable) lstSalas.get(Integer.parseInt(""+v.getTag())).getLogin());
         // enviar daos de preenchimento
-        //it.putExtra(MenuPrincipalActivity.SALASDISPONIVEIS, (Serializable) lstSalas.get(Integer.parseInt("" + v.getTag())));
+        args.putSerializable(MenuPrincipalActivity.SALASDISPONIVEIS, (Serializable) lstSalas.get(Integer.parseInt("" + v.getTag())));
         // iniciar activity
-        //context.startActivity(it);
+        context.startActivity(it);
     }
 
     // variaveis para linkar com as da interface

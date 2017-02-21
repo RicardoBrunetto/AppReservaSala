@@ -83,8 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     it.putExtra(MenuPrincipalActivity.SENHA,login.getSenha()); // passar senha como paramentro
                     it.putExtra(MenuPrincipalActivity.PRIVILEGIO,login.getPrivilegio()); // passar privilegio como parametro
                     startActivity(it); // inicializar a tela do menu principal
-                }
-                else{
+                }else{
                     AlertDialog.Builder adlg = new AlertDialog.Builder(this); // criar uma mensagem de alerta,
                     MessageBox.show(this, getString(R.string.erro), getString(R.string.notFoundUser));
                     // caracteres especiais como '~' as vezes não é reconhecido pelo android e podem ser transformados em

@@ -1,186 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.app.reserva.reservadesalauem.fragments.SolicitarReservaFragment"
-    android:gravity="center_vertical|center_horizontal">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Docente: "
-            android:id="@+id/txtSolicitarReservaDocente"
-            android:textColor="@color/azulPadrao" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spnSolicitarReservaDocente" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Tipo de Aula: "
-            android:id="@+id/txtSolicitarReservaTipoAula"
-            android:textColor="@color/azulPadrao" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spnSolicitarReservaTipoAula" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Disciplina: "
-            android:id="@+id/txtSolicitarReservaDisciplina"
-            android:textColor="@color/azulPadrao" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spnSolicitarReservaDisciplina" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Tipo de Sala: "
-            android:id="@+id/txtSolicitarReservaTIpoSala"
-            android:textColor="@color/azulPadrao" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spnSolicitarReservaTipoSala" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Data: "
-            android:id="@+id/txtSolicitarReservaData"
-            android:textColor="@color/azulPadrao" />
+            android:text="Nome : "
+            android:id="@+id/txtCadastrarUsuarioNome" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/edtSolicitarReservaData" />
+            android:id="@+id/edtCadastrarUsuarioNome" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Perido:"
-            android:id="@+id/txtSolicitarReservaPeriodo"
-            android:textColor="@color/azulPadrao" />
+            android:text="E-mail : "
+            android:id="@+id/txtCadastrarUsuarioEmail" />
 
-        <Spinner
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spnSolicitarReservaPeriodo" />
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/edtCadastrarusuarioEmail" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Tipo Reserva:"
-            android:id="@+id/txtSolicitarReservaTipo"
-            android:textColor="@color/azulPadrao" />
+            android:text="Telefone : "
+            android:id="@+id/txtCadastrarUsuarioTelefone" />
 
-        <Spinner
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spnSolicitarReservaTipo" />
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/edtCadastrarUsuarioTelefone" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Senha : "
+            android:id="@+id/txtCadastrarUsuarioSenha" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/edtCadastrarUsuarioSenha" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Repetir Senha : "
+            android:id="@+id/txtCadastrarUsuarioRepetirSenha" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/edtCadastrarUsuarioRepetirSenha" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Permissao : "
+            android:id="@+id/txtCadastrarUsuarioPermissao" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnCadastrarUsuarioPermissao" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Problema Locomocao : "
+            android:id="@+id/txtCadastrarUsuarioProblemaLocomocao" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnCadastrarUsuarioProblemaLocomocao" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancelar"
-            android:id="@+id/btnSolicitarReservaCancelar"
-            android:layout_weight="1"
-            tools:background="@drawable/btn_selector_vermelho"
-            android:textColor="@android:color/white"
-            android:layout_margin="5dp" />
+            android:id="@+id/btnCadastrarUsuarioCancelar"
+            android:layout_weight="1" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solicitar Reserva"
-            android:id="@+id/btnSolicitarReservaSolicitar"
-            android:layout_weight="1"
-            tools:background="@drawable/btn_selector_verde"
-            android:textColor="@android:color/white"
-            android:layout_margin="5dp" />
+            android:text="Cadastrar"
+            android:id="@+id/btnCadastrarUsuarioCadastrar"
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>
-</RelativeLayout>
