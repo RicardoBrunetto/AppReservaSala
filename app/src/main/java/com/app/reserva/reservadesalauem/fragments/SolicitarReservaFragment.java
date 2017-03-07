@@ -4,8 +4,10 @@ package com.app.reserva.reservadesalauem.fragments;
 import android.app.DatePickerDialog;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +48,7 @@ import java.util.List;
  * Use the {@link SolicitarReservaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SolicitarReservaFragment extends Fragment implements View.OnClickListener, Runnable{
+public class SolicitarReservaFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private Login login; // login do usuário
@@ -136,12 +138,6 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        Date atual = new Date(); // data atual
     }
 
     @Override
@@ -205,9 +201,10 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
 
         // verifica quem chamou essa tela
         opcao = 0;
-        Bundle bundle = getActivity().getIntent().getExtras();
+        Bundle bundle = getArguments();
         if(bundle.containsKey(MenuPrincipalActivity.PREENCHERSOLICITACAO)){
             opcao = (Integer)bundle.get(MenuPrincipalActivity.PREENCHERSOLICITACAO);
+            System.out.println("Opção: " + opcao);
         }
         // se foi a tela de salas livres, tem que pegar o dado da sala e periodo
         if(opcao==1){
@@ -246,6 +243,8 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
         // lista de todas as disciplinas
         lstDisciplina = new ArrayList<Disciplina>();
         lstDisciplina = cd.carregarDisciplina();
+        for(Disciplina d: lstDisciplina)
+            System.out.println("Disc carregada: " + d.getNome());
 
         // evento que exibe calendário para seleção de data
         ExibeDataListener listener = new ExibeDataListener();
@@ -271,6 +270,12 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
                 }
                 // caso mude o tipo de aula, pode acabar mudando para uma disciplina de outro curso (com limite 2 dias).
                 // para evitar que este possa ser solicitado em dia inválido, resstaura a data.
+
+                for(Disciplina d : getDisciplinasValidas())
+                    System.out.println(d.getNome());
+
+                System.out.println("DiscValidasSize: " + getDisciplinasValidas().size() + " | spnSelectedItem: " + spnSolicitarReservaDisciplina.getSelectedItemPosition());
+
                 Disciplina dicp1 = getDisciplinasValidas().get(spnSolicitarReservaDisciplina.getSelectedItemPosition());
                 Curso curso = getCurso(dicp1.getId_curso());
                 if (curso.getTipo() == 2) {
@@ -278,6 +283,7 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
                 }
                 // atualizar os periodos disponiveis
                 atualizaPeriodo();
+
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -301,6 +307,8 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
 
                 // caso mude o tipo de aula, pode acabar mudando para uma disciplina de outro curso (com limite 2 dias).
                 // para evitar que este possa ser solicitado em dia inválido, resstaura a data.
+                for(Disciplina d : getDisciplinasValidas())
+                    System.out.println(d.getNome());
                 Disciplina dicp1 = getDisciplinasValidas().get(spnSolicitarReservaDisciplina.getSelectedItemPosition());
                 Curso curso = getCurso(dicp1.getId_curso());
                 if(curso.getTipo()==2){
@@ -421,7 +429,7 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
     private Usuario getUsuario(String email){
         Usuario user1 = new Usuario();
         for (Usuario u:lstUsuario){
-            //System.out.println(u.getEmail());
+            System.out.println(u.getEmail());
             if(u.getEmail().equals(email)){
                 user1.clonar(u);
                 usuario = new Usuario();
@@ -488,7 +496,6 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
             semestre = 2;
         }
 
-
         // para cada disciplina existente, verificar se é uma disciplina do docente ou não
         for (Disciplina d:lstDisciplina){
             // dividir a string de disciplinas, pois cada disciplina é separado por um '-'
@@ -497,9 +504,11 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
                 if(arrumaDisciplina(dic).equals("" + d.getId())) {
                     // verificar se disciplina é do primeiro ou segundo semestre ou anual, se for do mesmo semestre ou
                     // anual, a disciplina é valida
-
+                    Disciplina d2 = new Disciplina();
+                    d2.clonar(d);
+                    dv.add(d2);
+/*
                     if ((d.getPeriodo() == semestre) || (d.getPeriodo() == 0)) {
-
                         // verifica classificação da disciplina e vê se é igual ao selecionado na sppiner
                         // pratica
                         if (d.getClassificacao() == 1 && spnSolicitarReservaTipoAula.getSelectedItemId() == 0) {
@@ -519,7 +528,7 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
                             d1.clonar(d);
                             dv.add(d1);
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -860,28 +869,10 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
             // pega tipo de aula
             reserva.setTiposala((int) spnSolicitarReservaTipoSala.getSelectedItemId() + 1);
             // preenchimento completo, chamar a thread e enviar ao servidor
-            Thread t = new Thread();
-            t.start();
 
-            try {
-                // esperar thread terminar de rodar
-                t.join();
-                // combinação login e senha errado
-                if(resultado == -1){
-                    MessageBox.show(getContext(),getString(R.string.erro),getString(R.string.notAllowed));
-                    return;
-                }
-                // erro na solicitação
-                if(resultado == 0){
-                    MessageBox.show(getContext(),getString(R.string.erro),getString(R.string.requestFailed));
-                    return;
-                }
-                // deu certo
-                if(resultado == 1){
-                    MessageBox.show(getContext(),"",getString(R.string.sucessRequestReserva));
-                    atualizaPeriodo();
-                }
-            } catch (InterruptedException e) {
+            try{
+                new SolicitarReserva().execute(new ReservaLogin(reserva, login));
+            }catch (Exception e){
                 e.printStackTrace();
             }
         }
@@ -914,17 +905,6 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
 
         DatePickerDialog dlg = new DatePickerDialog(getContext(),new SelecionaDataListener(),ano, mes,dia);
         dlg.show();
-    }
-
-    @Override
-    public void run() {
-        try {
-            AcessoAppUemWS ws = new AcessoAppUemWS();
-            resultado = ws.solicitarReserva(login,reserva);
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
     private class ExibeDataListener implements View.OnClickListener, View.OnFocusChangeListener{
@@ -1107,6 +1087,63 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
                     atualizaPeriodo();
                 }
             }
+        }
+    }
+
+    private class SolicitarReserva extends AsyncTask<ReservaLogin, Integer, Integer>{
+        @Override
+        protected void onPostExecute(Integer res) {
+            if(res == -1){
+                MessageBox.show(getContext(),getString(R.string.erro),getString(R.string.notAllowed));
+                return;
+            }
+            // erro na solicitação
+            if(res == -2){
+                MessageBox.show(getContext(),getString(R.string.erro),getString(R.string.requestFailed));
+                return;
+            }
+            // deu certo
+            if(res == 1){
+                MessageBox.show(getContext(),"",getString(R.string.sucessRequestReserva));
+                atualizaPeriodo();
+            }
+        }
+
+        @Override
+        protected Integer doInBackground(ReservaLogin[] params) {
+            Reserva reserva =  params[0].getRes();
+            Login login = params[0].getLogin();
+            int resultado = 0;
+
+            try {
+                AcessoAppUemWS ws = new AcessoAppUemWS();
+                Log.d("LogReserva", "O solicitarReserva será chamado");
+                resultado = ws.solicitarReserva(login,reserva);
+            }
+            catch (Exception ex) {
+                Log.d("LogReserva", "Erro aqui");
+                ex.printStackTrace();
+            }
+
+            return resultado;
+        }
+    }
+
+    private class ReservaLogin{
+        Reserva res;
+        Login login;
+
+        public ReservaLogin(Reserva res, Login login) {
+            this.res = res;
+            this.login = login;
+        }
+
+        public Reserva getRes() {
+            return res;
+        }
+
+        public Login getLogin() {
+            return login;
         }
     }
 }

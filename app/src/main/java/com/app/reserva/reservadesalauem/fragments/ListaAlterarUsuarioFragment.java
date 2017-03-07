@@ -51,7 +51,7 @@ public class ListaAlterarUsuarioFragment extends Fragment implements View.OnClic
         super.onCreate(savedInstanceState);
         login = new Login();
         // recebe parâmetro de outra tela
-        Bundle bundle = getActivity().getIntent().getExtras();
+        Bundle bundle = getArguments();
 
         // em vez de e-mail, senha e privilégio, era possível passar como parametro login
         if (bundle.containsKey(MenuPrincipalActivity.EMAIL)){

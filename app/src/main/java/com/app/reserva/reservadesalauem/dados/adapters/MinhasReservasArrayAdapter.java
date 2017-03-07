@@ -1,6 +1,7 @@
 package com.app.reserva.reservadesalauem.dados.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
             viewHolder.txtItemMinhasReservasSala = (TextView) view.findViewById(R.id.txtItemSalaNumero);
             viewHolder.txtItemMinhasReservasTipo = (TextView) view.findViewById(R.id.txtItemMinhasReservasTipo);
             viewHolder.txtItemMinhasReservasStatus = (TextView) view.findViewById(R.id.txtItemMinhasReservasStatus);
+            viewHolder.txtItemSalaNumero = (TextView) view.findViewById(R.id.txtItemSalaNumero);
             viewHolder.img_sts = (ImageView) view.findViewById(R.id.img_sts);
             view.setTag(viewHolder);
 
@@ -68,6 +70,7 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
         // escrever numero da sala só se tiver numero
         if(reserva.getIdsala() != -1){
             viewHolder.txtItemMinhasReservasSala.setText(reserva.getIdsala());
+            viewHolder.txtItemSalaNumero.setText(reserva.getIdsala());
         }
         viewHolder.txtItemMinhasReservasTipo.setText(getTipoSala(reserva.getTiposala()));
         int status = reserva.getStatus();
@@ -133,6 +136,7 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
             df.setLenient (false);
             java.util.Date date = null;
             // conversão string -> java.util.date
+            Log.d("LogReserva", data);
             date = df.parse(data);
             // pegar calendário
             Calendar cal = Calendar.getInstance();
@@ -192,7 +196,7 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
         TextView txtItemMinhasReservasData;
         TextView txtItemMinhasReservasSala;
         TextView txtItemMinhasReservasTipo;
-        TextView txtItemMinhasReservasStatus;
+        TextView txtItemMinhasReservasStatus, txtItemSalaNumero;
         ImageView img_sts;
     }
 }

@@ -71,7 +71,7 @@ public class ListarSalaFragment extends Fragment implements View.OnClickListener
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         // recebe parametro
-        Bundle bundle = getActivity().getIntent().getExtras();
+        Bundle bundle = getArguments();
         if (bundle.containsKey(MenuPrincipalActivity.EMAIL)){
             Log.d("LOG", "yes");
             usermail = bundle.getString(MenuPrincipalActivity.EMAIL);

@@ -78,13 +78,11 @@ public class AcessoAppUemWS {
         envelope.implicitTypes = true;
         HttpTransportSE httpTrans = new HttpTransportSE(URL);
         try{
-            Log.e("aki1","");
             // envia o envelope com o soap object
             httpTrans.call("urn" + VERIFICASISTEMA, envelope);
             // recebe resposta simples
             SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
             // converte para inteiro e reorna
-            Log.e("aki","");
             return Integer.valueOf(resposta.toString());
         }
         catch (Exception ex) {
@@ -440,8 +438,8 @@ public class AcessoAppUemWS {
                 user.setProblema_locomocao(Integer.parseInt(item.getProperty("problema_locomocao").toString()));
                 user.setStatus(Integer.parseInt(item.getProperty("status").toString()));
                 listaUsuario.add(user);
-            }
-            catch (Exception ex){
+            }catch (Exception ex){
+                ex.printStackTrace();
                 try{
                     Vector<SoapObject> resposta = (Vector<SoapObject>) envelope.getResponse();
 
@@ -460,13 +458,11 @@ public class AcessoAppUemWS {
 
                         listaUsuario.add(user);
                     }
-                }
-                catch (Exception ex2){
+                }catch (Exception ex2){
                     ex2.printStackTrace();
                 }
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex){
             ex.printStackTrace();
         }
         return listaUsuario;
@@ -702,10 +698,9 @@ public class AcessoAppUemWS {
         return listaReserva;
     }
 
-
     public int solicitarReserva(Login login, Reserva reserva) throws Exception{
         SoapObject soapSolicitarReserva = new SoapObject(NAMESPACE,SOLICITARRESERVA);
-
+        Log.d("LogReserva", "O solicitarReserva está sendo chamado");
         SoapObject soapUser = new SoapObject(NAMESPACE,"login");
         soapUser.addProperty("id",login.getId());
         soapUser.addProperty("email", login.getEmail());
@@ -736,13 +731,15 @@ public class AcessoAppUemWS {
         try{
             httpTrans.call("urn" + SOLICITARRESERVA, envelope);
             SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
-            return Integer.parseInt(resposta.toString());
-        }
-        catch (Exception ex){
-            return 0;
+            int resp = Integer.parseInt(resposta.toString());
+            Log.d("LogReserva", "O servidor está retornando: " + resp);
+            return resp;
+        }catch (Exception ex){
+            Log.d("LogReserva", "Erro de Solicitação");
+            ex.printStackTrace();
+            return -2;
         }
     }
-
 
     public ArrayList<AnoLetivo> carregarAnoLetivo() throws Exception{
         ArrayList<AnoLetivo> listaA = new ArrayList<>();
@@ -855,9 +852,9 @@ public class AcessoAppUemWS {
                 listaCurso.add(curso);
             }
             catch (Exception ex) {
+                ex.printStackTrace();
                 try {
                     Vector<SoapObject> resposta = (Vector<SoapObject>) envelope.getResponse();
-
                     for (SoapObject item:resposta){
                         Curso curso = new Curso();
 

@@ -48,7 +48,7 @@ public class ListaAlterarSalaFragment extends Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getActivity().getIntent().getExtras(); // usado para passagem de parametro
+        Bundle bundle = getArguments(); // usado para passagem de parametro
         if (bundle.containsKey(MenuPrincipalActivity.LOGIN)){
             login = (Login)bundle.get(MenuPrincipalActivity.LOGIN); // passei o login inteiro, dependendo do local do código
             // foi passado cada parametro separadamente

@@ -57,7 +57,7 @@ public class CadastrarUsuarioFragment extends Fragment implements View.OnClickLi
         super.onCreate(savedInstanceState);
         login = new Login(); // criar um novo login
 
-        Bundle bundle = getActivity().getIntent().getExtras(); // usado para passagem de parametro
+        Bundle bundle = getArguments(); // usado para passagem de parametro
 
         if (bundle.containsKey(MenuPrincipalActivity.EMAIL)){ // verifica se existe parametro com esse nome
             login.setEmail(bundle.getString(MenuPrincipalActivity.EMAIL));

@@ -1,8 +1,10 @@
 package com.app.reserva.reservadesalauem.dados.adapters;
 
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
     private Context context;
     // login do usuario
     private Login login;
+    private FragmentManager frMngr;
     private ArrayList<SalasDisponiveis> lstSalas;
 
     public SalasDisponiveisArrayAdapter(Context context, int resource){
@@ -41,7 +44,7 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
         lstSalas = new ArrayList<>();
     }
 
-    public SalasDisponiveisArrayAdapter(Context context, int resource, Login user){
+    public SalasDisponiveisArrayAdapter(Context context, int resource, Login user, FragmentManager frMngr){
         super(context,resource);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.resource = resource;
@@ -49,6 +52,7 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
         login =new Login();
         login = user;
         lstSalas = new ArrayList<>();
+        this.frMngr = frMngr;
     }
 
 
@@ -143,22 +147,21 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
     // quando clica em reservar, tem que ir na tela de reserva, e preencher os dados
     @Override
     public void onClick(View v) {
-
+        Log.d("LogReserva", "Clicked");
 
         for(SalasDisponiveis s1:lstSalas){
             System.out.println(s1.getPeriodo()+"-"+s1.getSalaslivres());
         }
         System.out.println("Periodo atual : "+lstSalas.get(Integer.parseInt(""+v.getTag())).getPeriodo());
 
-        Intent it = new Intent(context, SolicitarReservaFragment.class);
         SolicitarReservaFragment solicitarReservaFragment = new SolicitarReservaFragment();
         Bundle args = new Bundle();
 
         args.putString(MenuPrincipalActivity.EMAIL,login.getEmail());
         args.putString(MenuPrincipalActivity.SENHA,login.getSenha());
         args.putInt(MenuPrincipalActivity.PRIVILEGIO,login.getPrivilegio());
-        solicitarReservaFragment.setArguments(args);
-        context.startActivity(it);
+
+//        context.startActivity(it);
 
 
         //TODO: Intent it = new Intent(context, SolicitarReservaActivity.class);
@@ -169,7 +172,8 @@ public class SalasDisponiveisArrayAdapter extends ArrayAdapter<SalasDisponiveis>
         // enviar daos de preenchimento
         args.putSerializable(MenuPrincipalActivity.SALASDISPONIVEIS, (Serializable) lstSalas.get(Integer.parseInt("" + v.getTag())));
         // iniciar activity
-        context.startActivity(it);
+        solicitarReservaFragment.setArguments(args);
+        frMngr.beginTransaction().replace(R.id.content_frame, solicitarReservaFragment).commit();
     }
 
     // variaveis para linkar com as da interface

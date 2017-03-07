@@ -89,7 +89,7 @@ public class SalasDisponiveisPorDiaFragment extends Fragment implements View.OnC
         super.onCreate(savedInstanceState);
 
         login = new Login();
-        Bundle bundle = getActivity().getIntent().getExtras();
+        Bundle bundle = getArguments();
 
         if (bundle.containsKey(MenuPrincipalActivity.EMAIL)){
             login.setEmail(bundle.getString(MenuPrincipalActivity.EMAIL));
@@ -235,7 +235,7 @@ public class SalasDisponiveisPorDiaFragment extends Fragment implements View.OnC
         // lista de salas disponíveis
         lstSalasDisponiveis = new ArrayList<>();
         // array adapter de salas que serão mostradas na tela
-        adpSalasDisponiveis = new SalasDisponiveisArrayAdapter(getContext(),R.layout.item_sala_disponivel,login);
+        adpSalasDisponiveis = new SalasDisponiveisArrayAdapter(getContext(),R.layout.item_sala_disponivel,login, getFragmentManager());
         // para cada periodo verificar quantas salas estão sendo usados, de cada tipo (proj e lab)
         for(int i=0;i<6;i++){ // para cada periodo
             // novo tipo de dados, salas disponiveis
