@@ -104,7 +104,7 @@ public class MinhasReservasFragment extends Fragment implements View.OnClickList
 
     private void carregarMinhasReservas(){
         // array adapter personalizado
-        adpReservas = new MinhasReservasArrayAdapter(getActivity(),R.layout.item_minha_reserva);
+        adpReservas = new MinhasReservasArrayAdapter(getActivity(),R.layout.item_minha_reserva, login);
         // todas as reservas do usuario
         ArrayList<Reserva> lstRes = new ArrayList<>();
         try{

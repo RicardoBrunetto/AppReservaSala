@@ -1,5 +1,6 @@
 package com.app.reserva.reservadesalauem.activities;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.app.reserva.reservadesalauem.R;
 import com.app.reserva.reservadesalauem.dados.Login;
@@ -28,6 +30,8 @@ import com.app.reserva.reservadesalauem.fragments.MinhasReservasFragment;
 import com.app.reserva.reservadesalauem.fragments.SalasDisponiveisPorDiaFragment;
 import com.app.reserva.reservadesalauem.fragments.SalasReservadasFragment;
 import com.app.reserva.reservadesalauem.fragments.SolicitarReservaFragment;
+
+import java.io.File;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -110,6 +114,9 @@ public class MenuPrincipalActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_principal, menu);
+        //TextView txt_cargo = (TextView) findViewById(R.id.txt_cargo);
+        TextView txt_email = (TextView) findViewById(R.id.txt_email);
+        txt_email.setText(user.getEmail());
         return true;
     }
 
@@ -200,6 +207,15 @@ public class MenuPrincipalActivity extends AppCompatActivity
             args.putInt(MenuPrincipalActivity.PRIVILEGIO, user.getPrivilegio());
             listaAlterarUsuarioFragment.setArguments(args);
             fragmentManager.beginTransaction().replace(R.id.content_frame, listaAlterarUsuarioFragment).commit();
+        }else if(id == R.id.nav_sair){
+            File arquivoLido = getFileStreamPath(getString(R.string.arq1)); // tenta carregar arquivo com o nome = FILENAME
+            if(arquivoLido.exists()){
+                arquivoLido.delete();
+            }
+            Intent i = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -243,7 +259,6 @@ public class MenuPrincipalActivity extends AppCompatActivity
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(id).setVisible(true);
     }
-
 
     /** Esta função atualiza os items do nav conforme os privilégios do usuário*/
     private void refreshNavItems() {

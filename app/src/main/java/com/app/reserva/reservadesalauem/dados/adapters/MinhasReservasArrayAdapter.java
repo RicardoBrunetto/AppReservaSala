@@ -1,44 +1,55 @@
 package com.app.reserva.reservadesalauem.dados.adapters;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.reserva.reservadesalauem.AcessoAppUemWS;
 import com.app.reserva.reservadesalauem.R;
+import com.app.reserva.reservadesalauem.app.MessageBox;
+import com.app.reserva.reservadesalauem.dados.Login;
 import com.app.reserva.reservadesalauem.dados.Reserva;
+import com.app.reserva.reservadesalauem.dados.ReservaLogin;
 import com.app.reserva.reservadesalauem.dados.Usuario;
+import com.app.reserva.reservadesalauem.fragments.SolicitarReservaFragment;
 import com.app.reserva.reservadesalauem.util.CarregarDadoUtils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Mamoru on 05/02/2016.
  */
-public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
+public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva>{
 
+    private Login login;
     private int resource;
     private LayoutInflater inflater;
     private Context context;
 
-    public MinhasReservasArrayAdapter(Context context, int resource) {
+    public MinhasReservasArrayAdapter(Context context, int resource, Login login) {
         super(context, resource);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.resource = resource;
         this.context = context;
+        this.login   = login;
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //return super.getView(position, convertView, parent);
+        final int pos = position;
         View view = null;
         ViewHolder viewHolder = null;
 
@@ -52,6 +63,7 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
             viewHolder.txtItemMinhasReservasTipo = (TextView) view.findViewById(R.id.txtItemMinhasReservasTipo);
             viewHolder.txtItemMinhasReservasStatus = (TextView) view.findViewById(R.id.txtItemMinhasReservasStatus);
             viewHolder.txtItemSalaNumero = (TextView) view.findViewById(R.id.txtItemSalaNumero);
+            viewHolder.btnCancelar = (Button) view.findViewById(R.id.btn_cancelarReserva);
             viewHolder.img_sts = (ImageView) view.findViewById(R.id.img_sts);
             view.setTag(viewHolder);
 
@@ -63,11 +75,21 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
             view = convertView;
         }
 
+        viewHolder.btnCancelar.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v){
+                Reserva reserva = getItem(pos);
+                new CancelarReserva(context).execute(new ReservaLogin(reserva, login));
+            }
+        });
+
+
         // pegar item de cada linha
         Reserva reserva = getItem(position);
         // setar os textos
-        viewHolder.txtItemMinhasReservasData.setText(getSemana(reserva.getDatareserva()) + ", " + reserva.getDatareserva() + " às " + getPeriodo(reserva.getPeriodo()));
+        viewHolder.txtItemMinhasReservasData.setText(getSemana(reserva.getDatareserva()) + ", " + getShortData(reserva.getDatareserva()) + " às " + getPeriodo(reserva.getPeriodo()).replace("(", "").replace(")", ""));
         // escrever numero da sala só se tiver numero
+        System.out.println(reserva.getIdsala());
         if(reserva.getIdsala() != -1){
             viewHolder.txtItemMinhasReservasSala.setText(reserva.getIdsala());
             viewHolder.txtItemSalaNumero.setText(reserva.getIdsala());
@@ -132,10 +154,8 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
     private String getSemana(String data){
         try {
             // usado para converter String para date, definindo em que formato ele está
-            DateFormat df = new SimpleDateFormat ("dd/MMM");
-            df.setLenient (false);
-            java.util.Date date = null;
-            // conversão string -> java.util.date
+            DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+            Date date = null;
             Log.d("LogReserva", data);
             date = df.parse(data);
             // pegar calendário
@@ -170,6 +190,21 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
         return "";
     }
 
+    //retorna a data numa versão mais curta
+    private String getShortData(String data){
+        try {
+            DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+            Date date = null;
+            Log.d("LogReserva", "Short:" + data);
+            date = df.parse(data);
+            df = new SimpleDateFormat("dd/MM");
+            return df.format(date);
+        }catch (ParseException e) {
+            e.printStackTrace();
+            return data;
+        }
+    }
+
     // converter int para string do tipo de sala
     private String getTipoSala(int id){
         if(id == 1){
@@ -197,6 +232,51 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva> {
         TextView txtItemMinhasReservasSala;
         TextView txtItemMinhasReservasTipo;
         TextView txtItemMinhasReservasStatus, txtItemSalaNumero;
+        Button btnCancelar;
         ImageView img_sts;
+    }
+
+    private class CancelarReserva extends AsyncTask<ReservaLogin, Integer, Integer> {
+
+        Context ctx;
+
+        public CancelarReserva(Context ctx){
+            this.ctx = ctx;
+        }
+
+        @Override
+        protected void onPostExecute(Integer res) {
+            if (res == -1) {
+                MessageBox.show(getContext(), ctx.getString(R.string.erro), ctx.getString(R.string.notAllowed));
+                return;
+            }
+            // erro na solicitação
+            if (res == -2) {
+                MessageBox.show(getContext(), ctx.getString(R.string.erro), ctx.getString(R.string.requestFailed));
+                return;
+            }
+            // deu certo
+            if (res == 1) {
+                MessageBox.show(getContext(), "", ctx.getString(R.string.sucessRemoveReserva));
+            }
+        }
+
+        @Override
+        protected Integer doInBackground(ReservaLogin[] params) {
+            Reserva reserva = params[0].getRes();
+            Login login = params[0].getLogin();
+            int resultado = 0;
+
+            try {
+                AcessoAppUemWS ws = new AcessoAppUemWS();
+                Log.d("LogReserva", "O removerReserva será chamado");
+                resultado = ws.removerReserva(login, reserva);
+            } catch (Exception ex) {
+                Log.d("LogReserva", "Erro aqui");
+                ex.printStackTrace();
+            }
+
+            return resultado;
+        }
     }
 }

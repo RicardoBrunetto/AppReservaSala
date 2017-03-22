@@ -29,6 +29,7 @@ import com.app.reserva.reservadesalauem.dados.Disciplina;
 import com.app.reserva.reservadesalauem.dados.Login;
 import com.app.reserva.reservadesalauem.dados.Periodo;
 import com.app.reserva.reservadesalauem.dados.Reserva;
+import com.app.reserva.reservadesalauem.dados.ReservaLogin;
 import com.app.reserva.reservadesalauem.dados.Sala;
 import com.app.reserva.reservadesalauem.dados.SalasDisponiveis;
 import com.app.reserva.reservadesalauem.dados.Usuario;
@@ -1129,21 +1130,4 @@ public class SolicitarReservaFragment extends Fragment implements View.OnClickLi
         }
     }
 
-    private class ReservaLogin{
-        Reserva res;
-        Login login;
-
-        public ReservaLogin(Reserva res, Login login) {
-            this.res = res;
-            this.login = login;
-        }
-
-        public Reserva getRes() {
-            return res;
-        }
-
-        public Login getLogin() {
-            return login;
-        }
-    }
 }

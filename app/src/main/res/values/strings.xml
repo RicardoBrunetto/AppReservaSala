@@ -85,6 +85,7 @@
     <string name="selecionarDisc">Selecione uma disciplina</string>
     <string name="selecionarPeriodo">Selecione um período</string>
     <string name="sucessRequestReserva">Reserva solicitada com sucesso!</string>
+    <string name="sucessRemoveReserva">Reserva cancelada com sucesso!</string>
     <string name="periodoInUse">Esse período ja esta reservado, favor selecionar outro</string>
 
     <!-->CadastrarSalaActivity</!-->

@@ -28,6 +28,7 @@ public class AcessoAppUemWS {
 
     // para conexão com web service, precisa do URL dele
     private static final String URL = "http://10.30.8.8:8080/AppUemWS/services/AcessoAppUemWS?wsdl";
+    //private static final String URL = "http://localhost:8080/AppUemWS/services/AcessoAppUemWS?wsdl";
     // namespace do web service
     private static final String NAMESPACE="http://acesso.uemWS.appreserva.com.br";
 
@@ -53,6 +54,7 @@ public class AcessoAppUemWS {
     private static final String CARREGARANOLETIVO = "carregarAnoLetivo";
 
     private static final String SOLICITARRESERVA = "solicitarReserva";
+    private static final String REMOVERRESERVA = "removeReserva";
 
     private static final String SOLICITARDATAATUAL = "solicitarDataAtual";
 
@@ -730,6 +732,49 @@ public class AcessoAppUemWS {
         HttpTransportSE httpTrans = new HttpTransportSE(URL);
         try{
             httpTrans.call("urn" + SOLICITARRESERVA, envelope);
+            SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
+            int resp = Integer.parseInt(resposta.toString());
+            Log.d("LogReserva", "O servidor está retornando: " + resp);
+            return resp;
+        }catch (Exception ex){
+            Log.d("LogReserva", "Erro de Solicitação");
+            ex.printStackTrace();
+            return -2;
+        }
+    }
+
+    public int removerReserva(Login login, Reserva reserva) throws Exception{
+        SoapObject soapRemoverReserva = new SoapObject(NAMESPACE,REMOVERRESERVA);
+        Log.d("LogReserva", "O removerReserva está sendo chamado");
+        SoapObject soapUser = new SoapObject(NAMESPACE,"login");
+        soapUser.addProperty("id",login.getId());
+        soapUser.addProperty("email", login.getEmail());
+        soapUser.addProperty("senha", login.getSenha());
+        soapUser.addProperty("privilegio", login.getPrivilegio());
+        soapRemoverReserva.addSoapObject(soapUser);
+
+        SoapObject soapReserva = new SoapObject(NAMESPACE,"reserva");
+        soapReserva.addProperty("id",reserva.getId());
+        soapReserva.addProperty("iddepartamento",reserva.getIddepartamento());
+        soapReserva.addProperty("idusuario",reserva.getIdusuario());
+        soapReserva.addProperty("tipoaula",reserva.getTipoaula());
+        soapReserva.addProperty("iddisciplina",reserva.getIddisciplina());
+        soapReserva.addProperty("tipo",reserva.getTipo());
+        soapReserva.addProperty("dataefetuacao",reserva.getDataefetuacao());
+        soapReserva.addProperty("proximoid",reserva.getProximoid());
+        soapReserva.addProperty("datareserva",reserva.getDatareserva());
+        soapReserva.addProperty("periodo",reserva.getPeriodo());
+        soapReserva.addProperty("tiposala",reserva.getTiposala());
+        soapReserva.addProperty("idsala",reserva.getIdsala());
+        soapReserva.addProperty("status",reserva.getStatus());
+        soapRemoverReserva.addSoapObject(soapReserva);
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.setOutputSoapObject(soapRemoverReserva);
+        envelope.implicitTypes = true;
+        HttpTransportSE httpTrans = new HttpTransportSE(URL);
+        try{
+            httpTrans.call("urn" + REMOVERRESERVA, envelope);
             SoapPrimitive resposta = (SoapPrimitive) envelope.getResponse();
             int resp = Integer.parseInt(resposta.toString());
             Log.d("LogReserva", "O servidor está retornando: " + resp);
