@@ -27,7 +27,7 @@ import java.util.Vector;
 public class AcessoAppUemWS {
 
     // para conexão com web service, precisa do URL dele
-    private static final String URL = "http://10.30.8.8:8080/AppUemWS/services/AcessoAppUemWS?wsdl";
+    private static final String URL = "http://10.30.8.8:8080/AppReservaSOAPWS/services/AcessoAppUemWS?wsdl";
     //private static final String URL = "http://localhost:8080/AppUemWS/services/AcessoAppUemWS?wsdl";
     // namespace do web service
     private static final String NAMESPACE="http://acesso.uemWS.appreserva.com.br";
@@ -664,6 +664,7 @@ public class AcessoAppUemWS {
                 reserva.setTiposala(Integer.parseInt(item.getProperty("tiposala").toString()));
                 reserva.setIdsala(Integer.parseInt(item.getProperty("idsala").toString()));
                 reserva.setStatus(Integer.parseInt(item.getProperty("status").toString()));
+                reserva.print();
                 listaReserva.add(reserva);
             }
             catch (Exception ex){
@@ -685,7 +686,7 @@ public class AcessoAppUemWS {
                         reserva.setTiposala(Integer.parseInt(item.getProperty("tiposala").toString()));
                         reserva.setIdsala(Integer.parseInt(item.getProperty("idsala").toString()));
                         reserva.setStatus(Integer.parseInt(item.getProperty("status").toString()));
-
+                        reserva.print();
                         listaReserva.add(reserva);
                     }
                 }

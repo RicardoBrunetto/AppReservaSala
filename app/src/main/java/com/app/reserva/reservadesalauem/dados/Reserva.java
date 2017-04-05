@@ -48,6 +48,13 @@ public class Reserva {
         this.status = status;
     }
 
+    public void print(){
+        //System.out.print("Reserva: ID: " + id + " | ID_Depto: " + iddepartamento + " | ID_User: " + idusuario + " | TipoAula: " + tipoaula + " | ID_Disc: " + iddisciplina +
+        //" | Tipo: " + tipo + " | Data_Ef: " + dataefetuacao + " | Proximo_Id: " + " | Data_Reserva: " +  datareserva + " | Periodo: " + periodo + " | TipoSala:" +  tiposala + " | ID_Sala: " + idsala +
+        //" | Status" + status + "\n");
+        System.out.print("ID_Sala: " + idsala + "\n");
+    }
+
     public int getId() {
         return id;
     }
@@ -151,8 +158,6 @@ public class Reserva {
     public void setStatus(int status) {
         this.status = status;
     }
-
-
 
     public static Comparator<Reserva> ReservaPeriodoComparator = new Comparator<Reserva>() {
 

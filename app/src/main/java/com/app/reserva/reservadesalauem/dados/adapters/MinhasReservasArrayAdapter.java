@@ -226,6 +226,11 @@ public class MinhasReservasArrayAdapter extends ArrayAdapter<Reserva>{
         return "";
     }
 
+    @Override
+    public void add(Reserva object) {
+        super.add(object);
+    }
+
     // variaveis existentes na interface, para linkar depois
     static class ViewHolder {
         TextView txtItemMinhasReservasData;

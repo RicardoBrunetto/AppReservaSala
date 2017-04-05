@@ -117,6 +117,8 @@ public class MenuPrincipalActivity extends AppCompatActivity
         //TextView txt_cargo = (TextView) findViewById(R.id.txt_cargo);
         TextView txt_email = (TextView) findViewById(R.id.txt_email);
         txt_email.setText(user.getEmail());
+        TextView txt_cargo = (TextView) findViewById(R.id.txt_cargo);
+        txt_cargo.setText("Privilégio:" + user.getPrivilegio());
         return true;
     }
 
